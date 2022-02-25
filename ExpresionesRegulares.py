@@ -156,5 +156,7 @@ if re.search(patron12,'esto@correcto.es'):
 if not re.search(patron12,'esto  incorrecto@.com'):
     print ("Ejercicio 12.2: OK")
 
+sep()
+
 print(patron10)
 print(patron12)

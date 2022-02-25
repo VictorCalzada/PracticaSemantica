@@ -5,7 +5,7 @@
 </div>
 
 ## Objetivos 
-- [ ] Rellene el fichero «ExpresionesRegulares.py» de forma que funcionen
+- [x] Rellene el fichero «ExpresionesRegulares.py» de forma que funcionen
 - [ ] Programe en código python un script en el fichero «script.py» que separe, utilizando expresiones regulares,
 cada una de las valoraciones y las escriba a diferentes ficheros de texto cuyo nombre sea la posición del
 texto seguido de positivo o negativo con extensión txt. Por ejemplo, la quinta valoración debería guardarse
