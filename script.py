@@ -1,6 +1,7 @@
 
 import re
 import json
+import numpy as np
 
 
 __title__ =  "Script para separar películas"
@@ -82,7 +83,7 @@ def repList(lista, numero):
 
 
 
-def printDict(quieres, noquieres):
+def printDict(quieres, noquieres, verbose = True):
     listaquieres = []
     for palabra in quieres:
         listaquieres.extend(diccionario[palabra])
@@ -97,26 +98,59 @@ def printDict(quieres, noquieres):
     
     result = [item for item in liq if item not in linq]
     
-    print('-'*75)       
-    print(f'Aparece en {len(result)}\nLos textos en los que aparece son {result}')
-    print('-'*75+'\n')
+    if verbose:
+        print('-'*75)       
+        print(f'Aparece en {len(result)}\nLos textos en los que aparece son:\n {result}')
+        print('-'*75+'\n')
+
+    return result
 
 
-    
+def lecturaFilesId(lista, palabras):
+    cuenta = dict()
+    for palabra in palabras:
+        cuenta[palabra] = []
+    for elem in lista:
+        with open("ficheros/file"+str(elem)+".txt", "r") as f:
+            contenido = f.read()
+            for palabra in palabras:
+                val = contenido.count(palabra) 
+                if val != 0:
+                    peso = 1 + np.log10(val)
+                else:
+                    peso = 0
+                cuenta[palabra].append(peso)
+           
+
+    return cuenta
 
     
 
 
 if __name__ ==  "__main__":
     #Ejercicio 02
-    #escribir_archivos("IMDB Dataset.csv")
+    escribir_archivos("IMDB Dataset.csv")
 
     #Ejercicio 03
-    #normalSpliting("IMDB_raiz.csv")
-    diccionario =_jsonToDict()
+    normalSpliting("IMDB_raiz.csv")
+    #diccionario =_jsonToDict() # Si ya tienes creado el data.json puedes no hacer ejecutar los metodos escribir_archivos y normalSpliting
     palabras = ['prison','brutal']
     palabrano = ['king']
     printDict(palabras, palabrano)
+
+    #Ejercicio 04
+    palabras = ['humor']
+    palabrano = []
+    textos = []
+    textos.extend(printDict(palabras, palabrano, verbose=False))
+    palabras = ['oscar']
+    textos.extend(printDict(palabras, palabrano, verbose=False))
+    textos = set(textos)
+    cuenta = lecturaFilesId(textos,['humor','oscar'])
+    puntuacion = np.dot(np.array(cuenta['humor']),np.array(cuenta['oscar']))
+    print(puntuacion)
+
+
     
 
     

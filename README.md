@@ -15,3 +15,8 @@ expresiones regulares, teniendo en cuenta que puede haber espacios dentro de la 
 genere el diccionario con el índice invertido. Conteste a la pregunta cuantos documentos tienen las palabras
 «prison», «brutal» y no contienen «king»
 - [ ] Halle el número de la valoración con la puntuación de la consulta «humor oscar»
+
+$$
+1+log_{10} tf_{t,d} \quad \text{si } tf_{t,d} > 0\\
+0 \qquad  \text{en otro caso}
+$$ 
