@@ -4,3 +4,4 @@ __pycache__
 ficheros/
 valoraciones/
 *.json
+*.zip
