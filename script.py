@@ -20,6 +20,11 @@ def escribir_archivos(fichero):
 
 
 def writeFile(number, text):
+    """
+    Elimina <br/> y escribe cada una de las criticas en la 
+    carpeta valoraciones con el número de la valoracion
+    y su valoracion (positiva, negativa)
+    """
     text = re.sub(r'<br\s*\/>', ' ', text)
     aux = text.split(',')
     filename = 'valoraciones/'+str(number)+aux[-1][0:-1]+'.txt'
@@ -27,6 +32,12 @@ def writeFile(number, text):
         f.write(text)
 
 def normalSpliting(fichero):
+    """
+    Escribe cada una de las criticas del fichero raiz y crea
+    un diccionario de índice invertido
+
+    La funcion _dictToJson() crea un archivo json que almacena el diccionario
+    """
     with open(fichero,'r') as f:
         for i, line in enumerate(f):
 
@@ -133,7 +144,7 @@ if __name__ ==  "__main__":
 
     #Ejercicio 03
     normalSpliting("IMDB_raiz.csv")
-    #diccionario =_jsonToDict() # Si ya tienes creado el data.json puedes no hacer ejecutar los metodos escribir_archivos y normalSpliting
+    #diccionario =_jsonToDict() # Si ya tienes creado el data.json puedes no ejecutar los metodos escribir_archivos y normalSpliting
     palabras = ['prison','brutal']
     palabrano = ['king']
     printDict(palabras, palabrano)
@@ -147,8 +158,17 @@ if __name__ ==  "__main__":
     textos.extend(printDict(palabras, palabrano, verbose=False))
     textos = set(textos)
     cuenta = lecturaFilesId(textos,['humor','oscar'])
-    puntuacion = np.dot(np.array(cuenta['humor']),np.array(cuenta['oscar']))
+    
+
+    puntuacion = np.zeros(len(textos))
+    vectores = np.array(list(cuenta.values()))
+    consulta = np.array([1,1])
+    for i in range(len(textos)):
+        prMod = np.linalg.norm(vectores[:,i])*np.sqrt(2)
+        puntuacion[i] = np.dot(vectores[:,i],consulta)/prMod
+
     print(puntuacion)
+    
 
 
     
