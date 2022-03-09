@@ -42,7 +42,7 @@ def normalSpliting(fichero):
     """
     with open(fichero,'r') as f:
         for i, line in enumerate(f):
-
+            
             line = re.sub(r'<\s*br\s*\/\s*>', ' ', line)
             dictionary(i, line)
             with open('ficheros/file'+str(i)+'.txt','w') as p:

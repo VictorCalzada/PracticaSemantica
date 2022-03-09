@@ -61,7 +61,7 @@ sep()
 # Ejercicio 5: Las palabras que no tengan el parentesis al principio )
 
 
-patron5 = r'^[^(]\w*'
+patron5 = r'^[^(].*$'
 if re.search(patron5,'7estoesvalido111___@@@@'):
     print ("Ejercicio 5.1: OK")
 if not re.search(patron5,'(estoNOESVALIDO11117'):
