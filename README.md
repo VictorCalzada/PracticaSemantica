@@ -14,9 +14,5 @@ expresiones regulares, teniendo en cuenta que puede haber espacios dentro de la 
 - [x] Añada un método al script anterior para generar todos los ficheros con el fichero IMDB\_raiz.csv y que se
 genere el diccionario con el índice invertido. Conteste a la pregunta cuantos documentos tienen las palabras
 «prison», «brutal» y no contienen «king»
-- [ ] Halle el número de la valoración con la puntuación de la consulta «humor oscar»
+- [x] Halle el número de la valoración con la puntuación de la consulta «humor oscar»
 
-$$
-1+log_{10} tf_{t,d} \quad \text{si } tf_{t,d} > 0\\
-0 \qquad  \text{en otro caso}
-$$ 
